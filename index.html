@@ -1,0 +1,425 @@
+
+<!DOCTYPE html>
+<html>
+
+    <head>
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-46FDQ6X45J"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+
+		  gtag('config', 'G-46FDQ6X45J');
+		</script>
+		
+		<title>GND: Global Navigation Dataset</title>
+		<meta name="description" content="GND: Global Navigation Dataset">
+		<meta name="keywords" content="robotics, perception, planning, navigation">
+		<link rel="stylesheet" type="text/css" href="css/gnd
+		.css">
+		<script type="text/x-mathjax-config">
+	      MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+	    </script>
+	    <script type="text/javascript" async
+	      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+	    </script>
+
+        
+
+	</head>
+
+
+	<body>
+		<header id="main-header">
+			<div class="container">
+				<h1>GND: Global Navigation Dataset</h1>
+			</div>
+		</header>
+
+		<!--Maybe combine the header and navbar so it's in one line-->
+		<section id="showcase">
+			<div class="container">
+				<!--maybe add text later-->
+			</div>
+		</section>
+
+		<div class="main-container">
+			<aside id="sidebar">
+				<ul>
+					<li><a href="#About">About</a></li>
+                    <li><a href="#Dataset">Dataset</a></li>
+                    <li><a href="#Usages">Example Usages</a></li>
+                    <li><a href="#Gallery">Gallery</a></li>
+					<li><a href="#Links">Links</a></li>
+                    <li><a href="#Contact">Contact</a></li>
+				</ul>
+			</aside>
+			<main>
+                <h1>GND: Global Navigation Dataset</h1>
+                <!-- info about this dataset -->
+                <br>
+
+                <center>
+                    Jing Liang<sup>*1</sup>, Dibyendu Das<sup>*2</sup>, Daeun Song<sup>*2</sup>, Md Nahid Hasan Shuvo<sup>2</sup>, Mohammad Durrani<sup>1</sup>, <br>
+                    Karthik Taranath<sup>1</sup>, Ivan Penskiy<sup>1</sup>, Dinesh Manocha<sup>1</sup>, Xuesu Xiao<sup>2</sup> 
+
+                    <br>
+                    <br>
+
+                    <sup>1</sup>University of Maryland, <sup>2</sup>George Mason University, <sup>*</sup>Equally Contributing Authors
+
+                    <br>
+                    <br>
+                    <br>
+
+                </center>
+
+				<!-- info on downloading, file structure, readme stuff -->
+				<center>
+					GND Dataset and Open-Source Build are  available on <br>
+						<a href="https://dataverse.orc.gmu.edu/dataset.xhtml?persistentId=doi:10.13021/orc2020/JUIW5F" target="_blank"><img src="./dataverse.png" alt="Dataverse" style="height: 75pt"></a><a href="https://github.com/jingGM/GND" target="_blank"><img src="./github.png" alt="GitHub" style="height: 75pt"></a><br>
+						[<a href="../../papers/gnd.pdf" target="_blank">Paper</a>] [<a href="https://youtu.be/teNuzlAEDY8" target="_blank">Video</a>] [<a href="https://dataverse.orc.gmu.edu/dataset.xhtml?persistentId=doi:10.13021/orc2020/JUIW5F" target="_blank">Dataset</a>] [<a href="https://github.com/jingGM/GND" target="_blank">Code</a>]
+				</center>
+
+                <center>
+                    <!-- Map Image Container -->
+                    <div id="content-container" style="display: flex; justify-content: flex-start; align-items: flex-start; gap: 20px;">
+                        
+                        <div id="map-container" style="position: relative; width: 800px; height: 800px;">
+                            
+                            <!-- Legend Box -->
+                            <div id="legend-box" style="position: absolute; top: 10px; left: 50px; z-index: 15;">
+                                <ul>
+                                    <li><span class="legend-color" style="background-color: white; border: 1px solid black;"></span> <strong>Pedestrian Walkways</strong></li>
+                                    <li><span class="legend-color" style="background-color: blue; border: 1px solid black;"></span> <strong>Vehicle Roadways</strong></li>
+                                    <li><span class="legend-color" style="background-color: yellow; border: 1px solid black;"></span> <strong>Stairs</strong></li>
+                                    <li><span class="legend-color" style="background-color: green; border: 1px solid black;"></span> <strong>Off-Road Terrain</strong></li>
+                                    <li><span class="legend-color" style="background-color: red; border: 1px solid black;"></span> <strong>Obstacles</strong></li>
+                                </ul>
+                            </div>
+
+                            <!-- Map -->
+                            <img id="dataset-map" src="map_gmu.png" alt="Map" style="width: 800px; height: 800px; object-fit: contain;">
+
+                        </div>
+
+                        <!-- Media Display Container (on the right side of the map) -->
+                        <div id="media-display">
+                            <!-- Images or videos will appear here on hover -->
+                        </div>
+                    </div>
+
+                </center>
+
+
+				<section id="About">
+                    <h2>About</h2>
+                    <p>
+                        Navigating large-scale outdoor environments requires complex reasoning in terms of geometric structures, environmental semantics, and terrain characteristics, which are typically captured by onboard sensors such as LiDAR and cameras. While current mobile robots can navigate such environments using pre-defined, high-precision maps based on hand-crafted rules tailored for specific environments, they often lack the commonsense reasoning capabilities that most humans possess when navigating unknown outdoor spaces.
+                    </p>
+                    <p>
+                        To address this gap, the Global Navigation Dataset (GND) has been developed as a large-scale dataset that integrates multi-modal sensory data, including 3D LiDAR point clouds, RGB images, and 360&deg images, along with multi-category traversability maps. These maps include pedestrian walkways, vehicle roadways, stairs, off-road terrain, and obstacles, collected from ten university campuses. These environments encompass a variety of parks, urban settings, elevation changes, and campus layouts of different scales. The dataset covers approximately 2.7 km&sup2 and includes at least 350 buildings in total.
+                    </p>
+                    <p>
+                        The GND is designed to enable global robot navigation by providing resources for various applications such as map-based global navigation, mapless navigation, and global place recognition.
+                    </p>
+                    
+                    <br>
+
+                    <center>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/teNuzlAEDY8?si=XldPNwUQ8rlR7pZ2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </center>
+                </section>
+
+
+				<br>
+				<br>
+
+
+                <section id="Dataset">
+                    <h2>Dataset</h2>
+                    <p>We first describe the data collection procedure. We then describe the details of our dataset, particularly on the traversability map.</p>
+
+                    <h3>Data Collection</h3>
+                    <p>
+                        Data collection was conducted by manually operating the robot to navigate various campus environments, considering the traversability of the roads. The robot primarily navigates pedestrian walkways but also traverses vehicle roadways when necessary, such as when crossing streets or accessing specific areas. The robot is equipped with the following sensors:
+                    </p>
+                    <ul>
+                        <li><strong>3D LiDAR:</strong> Velodyne VLP-16 with 16 channels or Ouster OS1-32 with 32 channels, both covering a 360&deg; field of view and operating at 10 Hz.</li>
+                        <li><strong>RGB Camera:</strong> ZED2 with an image resolution of 1080p, facing front, and operating at 15 Hz.</li>
+                        <li><strong>360&deg; Camera:</strong> RICOH Theta V operating at 15 Hz.</li>
+                        <li><strong>IMU:</strong> 6D 3DM-GX5-10 operating at 355 Hz.</li>
+                        <li><strong>GPS:</strong> u-blox F9P operating at 20 Hz.</li>
+                    </ul>
+                    <figure>
+                        <img src="rgb/sensor_setup.png" alt="Robot Setup" style="width: 60%; float: left; margin-right: 2%; margin-left: -40px;">
+                        <!-- <figcaption style="font-size: 12px; text-align: center; margin-top: 5px;"><strong>Figure 1:</strong> Robot Setup for Data Collection. The robot is equipped with various sensors, including 3D LiDAR, RGB camera, 360&deg; camera, IMU, and GPS. It is capable of traversing diverse terrains, including pedestrian roads, roadways, off-road areas, ramps, and woods.</figcaption> -->
+                    </figure>
+                    <p>
+                        The robot operates on Ubuntu 20.04 and Robot Operating System (ROS) Noetic. Data captured by the sensors are recorded in the rosbag file format. We provide both intrinsic and extrinsic calibration parameters for the LiDARs and cameras. The dataset comprises data from 10 university campuses, covering approximately 2.7 km&sup2; with over 11 hours of recorded data. The campuses include a variety of environments, such as parks, different types of vegetation, elevation changes, diverse campus layouts, and objects.
+                    </p>
+                    <p>Five example campuses with their details are outlined in the table below:</p>
+                    <table style="width: 100%; border-collapse: collapse; font-size: 12px;">
+                        <caption style="font-weight: bold; font-size: 16px; text-align: center; margin-bottom: 10px;">Five Example Campuses in GND</caption>
+                        <thead>
+                            <tr style="border-bottom: 1px solid black;">
+                                <th style="border: 1px solid black; padding: 5px;">Campuses</th>
+                                <th style="border: 1px solid black; padding: 5px;">Covered Areas (km&sup2;)</th>
+                                <th style="border: 1px solid black; padding: 5px;">Number of Buildings</th>
+                                <th style="border: 1px solid black; padding: 5px;">Trajectory Length (km)</th>
+                                <th style="border: 1px solid black; padding: 5px;">Number of RGB Images</th>
+                                <th style="border: 1px solid black; padding: 5px;">Number of 360&deg; Images</th>
+                                <th style="border: 1px solid black; padding: 5px;">Number of LiDAR Clouds</th>
+                                <th style="border: 1px solid black; padding: 5px;">Pedestrian Walkways (%)</th>
+                                <th style="border: 1px solid black; padding: 5px;">Off-road Terrain (%)</th>
+                                <th style="border: 1px solid black; padding: 5px;">Vehicle Roadways (%)</th>
+                                <th style="border: 1px solid black; padding: 5px;">Stairs (%)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="border: 1px solid black; padding: 5px;">UMD</td>
+                                <td style="border: 1px solid black; padding: 5px;">0.84</td>
+                                <td style="border: 1px solid black; padding: 5px;">60</td>
+                                <td style="border: 1px solid black; padding: 5px;">23.26</td>
+                                <td style="border: 1px solid black; padding: 5px;">214768</td>
+                                <td style="border: 1px solid black; padding: 5px;">N/A</td>
+                                <td style="border: 1px solid black; padding: 5px;">146703</td>
+                                <td style="border: 1px solid black; padding: 5px;">10.66</td>
+                                <td style="border: 1px solid black; padding: 5px;">16.29</td>
+                                <td style="border: 1px solid black; padding: 5px;">25.84</td>
+                                <td style="border: 1px solid black; padding: 5px;">1.67</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid black; padding: 5px;">GMU</td>
+                                <td style="border: 1px solid black; padding: 5px;">0.46</td>
+                                <td style="border: 1px solid black; padding: 5px;">51</td>
+                                <td style="border: 1px solid black; padding: 5px;">13.67</td>
+                                <td style="border: 1px solid black; padding: 5px;">137948</td>
+                                <td style="border: 1px solid black; padding: 5px;">137027</td>
+                                <td style="border: 1px solid black; padding: 5px;">91500</td>
+                                <td style="border: 1px solid black; padding: 5px;">17.31</td>
+                                <td style="border: 1px solid black; padding: 5px;">25.04</td>
+                                <td style="border: 1px solid black; padding: 5px;">17.11</td>
+                                <td style="border: 1px solid black; padding: 5px;">0.41</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid black; padding: 5px;">CUA</td>
+                                <td style="border: 1px solid black; padding: 5px;">0.40</td>
+                                <td style="border: 1px solid black; padding: 5px;">32</td>
+                                <td style="border: 1px solid black; padding: 5px;">2.87</td>
+                                <td style="border: 1px solid black; padding: 5px;">29921</td>
+                                <td style="border: 1px solid black; padding: 5px;">30266</td>
+                                <td style="border: 1px solid black; padding: 5px;">20025</td>
+                                <td style="border: 1px solid black; padding: 5px;">7.86</td>
+                                <td style="border: 1px solid black; padding: 5px;">42.29</td>
+                                <td style="border: 1px solid black; padding: 5px;">18.78</td>
+                                <td style="border: 1px solid black; padding: 5px;">1.81</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid black; padding: 5px;">Georgetown</td>
+                                <td style="border: 1px solid black; padding: 5px;">0.25</td>
+                                <td style="border: 1px solid black; padding: 5px;">40</td>
+                                <td style="border: 1px solid black; padding: 5px;">3.25</td>
+                                <td style="border: 1px solid black; padding: 5px;">33244</td>
+                                <td style="border: 1px solid black; padding: 5px;">33325</td>
+                                <td style="border: 1px solid black; padding: 5px;">22050</td>
+                                <td style="border: 1px solid black; padding: 5px;">7.16</td>
+                                <td style="border: 1px solid black; padding: 5px;">21.42</td>
+                                <td style="border: 1px solid black; padding: 5px;">13.96</td>
+                                <td style="border: 1px solid black; padding: 5px;">1.51</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid black; padding: 5px;">GWU</td>
+                                <td style="border: 1px solid black; padding: 5px;">0.15</td>
+                                <td style="border: 1px solid black; padding: 5px;">39</td>
+                                <td style="border: 1px solid black; padding: 5px;">3.00</td>
+                                <td style="border: 1px solid black; padding: 5px;">33156</td>
+                                <td style="border: 1px solid black; padding: 5px;">32714</td>
+                                <td style="border: 1px solid black; padding: 5px;">22190</td>
+                                <td style="border: 1px solid black; padding: 5px;">8.95</td>
+                                <td style="border: 1px solid black; padding: 5px;">14.04</td>
+                                <td style="border: 1px solid black; padding: 5px;">28.09</td>
+                                <td style="border: 1px solid black; padding: 5px;">1.99</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+                    <h3>Standardized Data Processing</h3>
+
+                    <p>
+                        The data processing workflow is standardized to encourage broader contributions. First, the raw rosbag data is processed to generate both the trajectories and 3D local maps. The point cloud maps are then processed by removing the ground, enhancing the visibility of significant features such as buildings. Local maps are registered to create a global map where all trajectories and maps are transformed into a unified coordinate system. For each campus, a single global map is generated within the dataset.
+                    </p>
+
+                    <figure style="text-align: center; margin: 20px auto;">
+                        <img src="rgb/umd_binary.png" alt="Point Cloud Map" style="width: 45%; display: inline-block; margin: 0 1%;">
+                        <img src="rgb/umd_trav.png" alt="Multi-category Traversability Map" style="width: 45%; display: inline-block; margin: 0 1%;">
+                    </figure>
+                    
+                    <h3>Multi-Category Traversability Map</h3>
+
+                    <p>
+                        The 2D traversability maps are created by projecting the 3D point cloud global map onto the 2D plane. A standard annotation method labels five distinct traversability types, each represented by different colors. The dataset provides not only geometric but also semantic information about the environment, closely aligned with real-world conditions.
+                    </p>
+                </section>
+
+
+                <br>
+                <br>
+
+                <section id="Usages">
+                    <h2>Example Usages</h2>
+
+                    <p>
+                        We present three applications for the GND dataset, emphasizing its unique characteristics: <em>globalness</em> and <em>traversability</em>, which are not present in existing navigation datasets. This dataset is collected mostly by the Jackal robot, but it can be used for navigation tasks with different types of robots, such as legged robots and wheeled robots. We implement map-based global navigation, mapless navigation, and global place recognition.
+                    </p>
+
+                    
+                    <!-- Map-based Global Navigation -->
+                    <h3>Map-based Global Navigation</h3>
+                    <p>
+                        The primary goal of the Global Navigation Dataset (GND) is to provide precise map data for global robot navigation. To demonstrate its utility, an experiment was conducted comparing the navigation capabilities of two robots with different modalities and traversabilities: wheeled and legged. Using the map, path planning methods such as A* or RRT* can generate a path based on the GPS coordinates of the start and goal positions. As the robot moves, motion planning methods can be employed to observe real-time environment changes and guide the robot's actions. 
+                    </p>
+                    <p>
+                        Both robots initially navigate along the sidewalk. However, if the path becomes non-traversable for a particular robot type, the motion planner will select alternative traversable areas, adjusting the robot's course to reach the next waypoint along the trajectory. For example, when the path encounters stairs, the wheeled robot deviates to a nearby ramp before returning to the next waypoint, while the legged robot continues on its original path, walking directly up the stairs. For other obstacles, such as construction cones and groups of people blocking the sidewalk, the legged robot steps down the curb or navigates through off-road terrain to avoid the blockage.
+                    </p>
+                    <figure style="text-align: center; margin: 20px auto;">
+                        <img src="rgb/innovation1.png" alt="Map-based Global Navigation" style="width: 98%; margin: 0;">
+                        <!-- <figcaption style="font-size: 12px; text-align: center; margin-top: 5px;"><strong>Figure 1:</strong> Map-based Global Navigation using Multi-Category Traversability Map in GND. The white and yellow stars indicate the start and goal positions, respectively. The orange line shows the path of the wheeled robot, and the purple line shows the path of the legged robot.</figcaption> -->
+                    </figure>
+
+                    <!-- Mapless Navigation with Traversability Analysis -->
+                    <h3>Mapless Navigation with Traversability Analysis</h3>
+                    <p>
+                        To assess the efficacy of various traversability types in the dataset for learning-based mapless navigation algorithms, the MTG algorithm is extended with multiple traversability levels, referred to as T-MTG. This approach allows for the generation of corresponding trajectories for different traversability levels. Three traversability levels are defined: 
+                        </p>
+                    <ul>
+                        <li><strong>Basic traversability:</strong> Includes only pedestrian walkways, where robots can move at various speeds.</li>
+                        <li><strong>Agile traversability:</strong> Designed primarily for fast-moving wheeled robots and includes both pedestrian walkways and vehicle roadways.</li>
+                        <li><strong>Legged traversability:</strong> Suitable for legged robots, allowing traversal on pedestrian walkways and off-road terrain, but not safe for use on vehicle roadways.</li>
+                    </ul>
+                    <p>
+                        T-MTG generates trajectories covering a 200&deg; field of view (FOV) in front of the robot. For each traversability level, the generated trajectories effectively cover the areas in front of the robot, demonstrating the model's capability to adapt to different environments and requirements.
+                    </p>
+                    <figure style="text-align: center; margin: 20px auto;">
+                        <img src="rgb/mtg.png" alt="T-MTG Model for Mapless Navigation" style="width: 98%; margin: 0;">
+                        <!-- <figcaption style="font-size: 12px; text-align: center; margin-top: 5px;"><strong>Figure 2:</strong> T-MTG model used to generate trajectories for different traversability levels.</figcaption> -->
+                    </figure>
+
+                    <!-- Vision-based Place Recognition -->
+                    <h3>Vision-based Place Recognition</h3>
+                    <p>
+                        Both RGB and 360&deg; camera images are collected to enable vision-based global navigation. To demonstrate the usability of 360&deg; image data, the NoMaD algorithm is used for goal detection. This method compares the current observation with topological image nodes to recognize the best target to follow for navigation. By using images in four views (front, left, right, and back) from the 360&deg; camera, the algorithm can select the subgoal with the highest similarity as the closest node for further navigation.
+                    </p>
+                    <p>
+                        The average similarity score of all four views from real-time image observations and the goal is higher compared to using only one directional image. This highlights the advantages of utilizing all available directional information from 360&deg; images for more accurate and efficient goal-directed navigation.
+                    </p>
+                    <figure style="text-align: center; margin: 20px auto;">
+                        <img src="rgb/Inn3-1.png" alt="Vision-based Place Recognition" style="width: 98%; margin: 0;">
+                        <!-- <figcaption style="font-size: 12px; text-align: center; margin-top: 5px;"><strong>Figure 3:</strong> Vision-based Place Recognition using 360&deg; images in GND. The average dissimilarity between all directional context images and the goal is lower compared to using only one directional image.</figcaption> -->
+                    </figure>
+                </section>
+
+
+                <br>
+                <br>
+
+                <!-- Gallery -->
+				<section id="Gallery">
+                    <h2>Gallery</h2>
+                    <div class="gallery-container">
+
+                        <div class="gallery-item">
+                            <img src="maps/gmu_color.png" alt="George Mason University (GMU)" class="gallery-image">
+                            <p class="map-name">George Mason University (GMU)</p>
+                        </div>
+
+                        <div class="gallery-item">
+                            <img src="maps/gwu_color.png" alt="George Washington University (GWU)" class="gallery-image">
+                            <p class="map-name">George Washington University (GWU)</p>
+                        </div>
+
+                        <div class="gallery-item">
+                            <img src="maps/umd_map2.png" alt="University of Maryland (UMD)" class="gallery-image">
+                            <p class="map-name">University of Maryland (UMD)</p>
+                        </div>
+                        
+                        <div class="gallery-item">
+                            <img src="maps/catholic_color.png" alt="Catholic University of America (CUA)" class="gallery-image">
+                            <p class="map-name">Catholic University of America (CUA)</p>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="maps/gtwon_color.png" alt="Georgetown University" class="gallery-image">
+                            <p class="map-name">Georgetown University</p>
+                        </div>
+                        
+                        <div class="gallery-item">
+                            <img src="maps/marymount_color.png" alt="MaryMount University" class="gallery-image">
+                            <p class="map-name">MaryMount University</p>
+                        </div>
+                    </div>
+                </section>
+
+
+
+
+                <br>
+                <br>
+                
+				<!-- links to paper, dataset, and video -->
+				<section id="Links">
+					<h2>Links</h2>
+					<ul>
+						<li><a href="https://dataverse.orc.gmu.edu/dataset.xhtml?persistentId=doi:10.13021/orc2020/JUIW5F" target="_blank">GND Dataset</a></li>
+						<li><a href="../../papers/gnd.pdf" target="_blank">GND Paper</a></li>
+						<li><a href="https://youtu.be/teNuzlAEDY8" target="_blank">GND Video</a></li>
+                        <li><a href="https://github.com/jingGM/GND" target="_blank">GND Code</a></li>
+                    </ul>
+
+                </section>
+
+                <br>
+                <br>
+                
+                <!--Contact section-->
+                <section id="Contact">
+                    <h2>Contact</h2>
+                    <p>
+                    	For questions, please contact: <br><br>
+                        Jing Liang <br>
+                        Department of Computer Science <br>
+                        University of Maryland <br>
+                        8125 Paint Branch Dr, College Park, MD 20742, USA <br>
+                        <a href="mailto:liangjingjerry@gmail.com" target="_blank">liangjingjerry@gmail.com</a> <br>
+                        <a href="https://github.com/jingGM" target="_blank">https://github.com/jingGM</a> <br>
+
+                        <br>
+
+                        Dr. Xuesu Xiao <br>
+                        Department of Computer Science <br>
+                        George Mason University <br>
+                        4400 University Drive MSN 4A5, Fairfax, VA 22030 USA <br>
+                        <a href="mailto:xiao@gmu.edu" target="_blank">xiao@gmu.edu</a> <br>
+                        <a href="https://cs.gmu.edu/~xiao/" target="_blank">https://cs.gmu.edu/~xiao/</a> <br>
+                    </p>
+                </section>
+                
+                <br>
+                <br>
+
+			</main>
+		</div>
+
+		<div>
+			<footer id="main-footer">
+				<p>RobotiXX Lab at George Mason University</p>
+			</footer>
+		</div>
+
+        <script src="crosses.js"></script>
+		
+	</body>
+
+</html>
